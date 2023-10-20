@@ -15,8 +15,12 @@ const redis = new Redis({
 // Handle connection errors (optional)
 redis.on('error', (err) => {
   console.error('Redis connection error:', err);
+  
 });
-
+// Handle successful connection
+redis.on('connect', () => {
+  console.log('Connected to Redis');
+});
 // Set a value in Redis
 redis.set('myKey', 'myValue', (err, reply) => {
   if (err) {
